@@ -64,7 +64,14 @@ export default function CustomizedButtons({ results }) {
       let win = window.open("data:," , "Result | " + document.title);
       win = window.open();
     win.document.title = "Result | " + document.title;
-    win.document.body.innerHTML = texts.slice()
+
+    let separateList = '<ul>'
+    results.forEach(function(value) {
+       separateList += '<li>' + value + '</li>';
+    });
+    separateList += '</ul>';
+
+    win.document.body.innerHTML = separateList
   }
 
   return (
