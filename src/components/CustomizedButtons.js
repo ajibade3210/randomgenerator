@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { withStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import FileCopyOutlinedIcon from "@material-ui/icons/FileCopyOutlined";
 import GetAppOutlinedIcon from "@material-ui/icons/GetAppOutlined";
 import OpenInNewOutlinedIcon from "@material-ui/icons/OpenInNewOutlined";
 import ArrowUpwardOutlinedIcon from "@material-ui/icons/ArrowUpwardOutlined";
+import { CopyToClipboard } from "react-copy-to-clipboard/lib/Component";
 
 const ColorButton = withStyles((theme) => ({
   root: {
@@ -21,12 +22,56 @@ const ColorButton = withStyles((theme) => ({
   },
 }))(Button);
 
-export default function CustomizedButtons() {
+export default function CustomizedButtons({ results }) {
+  const [backToTopButton, setBackToTopButton] = useState(false);
+  const [copied, setCopied] = useState(false);
+
+  const texts = results.toString()
+
+  /* download file func */
+  const downloadTxtFile = () => {
+    const element = document.createElement("a");
+    const file = new Blob(results, {
+      type: "text/plain"
+    });
+    element.href = URL.createObjectURL(file);
+    element.download = "myFile.txt";
+    document.body.appendChild(element);
+    element.click();
+  };
+
+  /* effect for scroll button */
+  useEffect(() => {
+    window.addEventListener("scroll", () => {
+      if (window.scrollY > 100) {
+        setBackToTopButton(true);
+      } else {
+        setBackToTopButton(false);
+      }
+    });
+  }, []);
+
+  const scrollup = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
+
+
+  function openAsText(event) {
+    event.preventDefault();
+      let win = window.open("data:," , "Result | " + document.title);
+      win = window.open();
+    win.document.title = "Result | " + document.title;
+    win.document.body.innerHTML = texts.slice()
+  }
+
   return (
     <div>
       <div className="result_buttons">
         <div className="buttons__ hide">
-          <ColorButton variant="contained" startIcon={<GetAppOutlinedIcon />}>
+          <ColorButton variant="contained" onClick={downloadTxtFile} startIcon={<GetAppOutlinedIcon />}>
             Download.txt
           </ColorButton>
         </div>
@@ -35,9 +80,13 @@ export default function CustomizedButtons() {
           <ColorButton
             variant="contained"
             startIcon={<FileCopyOutlinedIcon />}
-            onClick={"copyToClipboard"}
           >
-            Copy to clipboard
+            <CopyToClipboard
+              text={texts}
+              onCopy={()=> setCopied(true)}
+            >
+          <span>{!copied ? 'Copy to clipboard' : 'Copied successfully'}</span>
+            </CopyToClipboard>
           </ColorButton>
         </div>
 
@@ -45,6 +94,7 @@ export default function CustomizedButtons() {
           <ColorButton
             variant="contained"
             startIcon={<OpenInNewOutlinedIcon />}
+            onClick={openAsText}
           >
             Open as plain text
           </ColorButton>
@@ -54,6 +104,7 @@ export default function CustomizedButtons() {
           <ColorButton
             variant="contained"
             startIcon={<ArrowUpwardOutlinedIcon />}
+            onClick={scrollup}
           >
             Scroll to options
           </ColorButton>

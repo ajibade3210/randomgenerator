@@ -1,8 +1,6 @@
 import React, { useState } from "react";
-import Button from "@material-ui/core/Button";
 import ButtonGroup from "@material-ui/core/ButtonGroup";
 import { makeStyles } from "@material-ui/core/styles";
-import styled from "styled-components";
 import RemoveOutlinedIcon from "@material-ui/icons/RemoveOutlined";
 import AddOutlinedIcon from "@material-ui/icons/AddOutlined";
 
@@ -15,17 +13,6 @@ const useStyles = makeStyles((theme) => ({
     },
   },
 }));
-
-const StyledButton = styled(Button)`
-  color: #6185dd;
-  padding: 0px;
-  height: "1.5em";
-  border-radius: "5px !important";
-  &:hover {
-    background-color: #6185dd;
-    color: #fff;
-  }
-`;
 
 export default function ButtonTwo({ parentCallback }) {
   const [fraction, setFraction] = useState(2);
@@ -60,7 +47,7 @@ export default function ButtonTwo({ parentCallback }) {
             color="primary"
             aria-label="outlined primary button group"
           >
-            <button className="styledButton">
+            <button type="button" className="styledButton">
               <RemoveOutlinedIcon onClick={settings} />
             </button>
             <input
@@ -70,7 +57,7 @@ export default function ButtonTwo({ parentCallback }) {
               type="number"
               id="buttonthree"
             />
-            <button className="styledButton">
+            <button type="button" className="styledButton">
               <AddOutlinedIcon onClick={settingsPlus} />
             </button>
           </ButtonGroup>

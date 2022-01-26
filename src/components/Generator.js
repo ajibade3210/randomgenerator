@@ -92,19 +92,17 @@ const Generator = () => {
 
   const submitForm = (e) => {
     e.preventDefault();
-    console.log('radioNumValue',radioNumValue);
-    console.log('radioGenValue',radioGenValue);
-    console.log('buttonOneData',buttonOneData);
-    console.log('buttonTwoData',buttonTwoData);
-    console.log('buttonThreeData',buttonThreeData);
-    console.log('repeat',repeat);
-    console.log('rangeFrom',rangeFrom);
-    console.log('rangeTo',rangeTo);
-    console.log('bound',bound);
-
-    setJet(true)
-    // setTimeout(() => {setClick(false)}, 500);
+    // console.log('radioNumValue',radioNumValue);
+    // console.log('radioGenValue',radioGenValue);
+    // console.log('buttonOneData',buttonOneData);
+    // console.log('buttonTwoData',buttonTwoData);
+    // console.log('buttonThreeData',buttonThreeData);
+    // console.log('repeat',repeat);
+    // console.log('rangeFrom',rangeFrom);
+    // console.log('rangeTo',rangeTo);
+    // console.log('bound',bound);
     
+    setJet(true)
     
     setItems({
       quantity: buttonOneData,
@@ -309,12 +307,7 @@ const Generator = () => {
 
 {jet &&
 (
-  <>
-  <div className="wrapper">
         <Result rangeFrom={rangeFrom} rangeTo={rangeTo} items={items.quantity} buttonOneData={buttonOneData} jet={jet}/>
-      </div>
-      <CustomizedButtons />
-  </>
       )}
 
     </div>

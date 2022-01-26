@@ -47,7 +47,7 @@ export default function ButtonOne({ parentCallback }) {
             color="primary"
             aria-label="outlined primary button group"
           >
-            <button className="styledButton">
+            <button type="button" className="styledButton">
               <RemoveOutlinedIcon onClick={quality} />
             </button>
             <input
@@ -57,7 +57,7 @@ export default function ButtonOne({ parentCallback }) {
               type="number"
               id="buttonthree"
             />
-            <button className="styledButton">
+            <button type="button" className="styledButton">
               <AddOutlinedIcon onClick={qualityPlus} />
             </button>
           </ButtonGroup>

@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
+import CustomizedButtons from "./CustomizedButtons";
 
 
 const Result =({rangeFrom,rangeTo, items,buttonOneData, jet}) => {
     // const [results, setResults] = useState([])
 
-    console.log('RESULT__rangeFrom',rangeFrom);
-    console.log('RESULT__rangeTo',rangeTo);
+    // console.log('RESULT__rangeFrom',rangeFrom);
+    // console.log('RESULT__rangeTo',rangeTo);
 
     let results = []
 
@@ -27,13 +28,13 @@ const Result =({rangeFrom,rangeTo, items,buttonOneData, jet}) => {
              results.push(winn)
       }
       return results
-  }
+    }
 
   jet && uploadData()
 
 
-
     return(
+        <div className="wrapper">
         <div className="result_wrapper">
             <div className="result_list">
                <div className="">
@@ -42,6 +43,8 @@ const Result =({rangeFrom,rangeTo, items,buttonOneData, jet}) => {
            ))}
                </div>
             </div>
+        </div>
+        <CustomizedButtons results={results} />
         </div>
     )
 }
